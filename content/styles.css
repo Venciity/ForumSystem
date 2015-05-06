@@ -1,0 +1,51 @@
+body>header, body>footer {
+    background: #eee;
+    padding: 10px 5px;
+}
+
+body>header>a>img, body>header ul, body>header ul>li{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+body>footer {
+    text-align: center;
+    font-size: 130%;
+    /*padding: 20px;*/
+}
+
+ul.messagesList {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+}
+
+ul.messagesList li {
+    display: block;
+    padding: 10px;
+    font-size: 200%;
+}
+
+ul.messagesList li.info {
+    background: #57ee76;
+}
+
+ul.messagesList li.error {
+    background: #ee4f3d;
+}
+
+#loggedInInfo {
+    float: right;
+}
+
+#loggedInInfo form {
+    display: inline-block;
+}
+
+#greetings {
+    background: #f5f5f5;
+    padding: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+}
