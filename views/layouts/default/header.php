@@ -41,5 +41,6 @@
         </div>
     </div>
 </nav>
+<div class="container">
 
 <?php include('messages.php'); ?>
