@@ -19,27 +19,6 @@ body>footer {
     right: 0;
 }
 
-ul.messagesList {
-    width: 80%;
-    margin: 10px auto;
-    padding: 10px;
-    text-align: center;
-}
-
-ul.messagesList li {
-    display: block;
-    padding: 10px;
-    font-size: 200%;
-}
-
-ul.messagesList li.info {
-    background: #57ee76;
-}
-
-ul.messagesList li.error {
-    background: #ee4f3d;
-}
-
 #loggedInInfo {
     float: right;
 }

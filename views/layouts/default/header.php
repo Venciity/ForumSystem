@@ -21,16 +21,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">Questions</a></li>
+                <li><a href="/questions">Questions</a></li>
                 <li><a href="#">Categories</a></li>
 
             </ul>
             <?php if($this->isLoggedIn) : ?>
             <div id="loggedInInfo">
-<!--                <form action="/accounts/logout">-->
-<!--<!--                    <input type="submit" value="Logout"/>-->-->
-<!--                    <button type="submit" class="btn">Logout</button>-->
-<!--                </form>-->
                 <form class="navbar-form navbar-right" action="/accounts/logout">
                     <button type="submit" class="btn btn-default">Logout</button>
                 </form>

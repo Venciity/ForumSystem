@@ -36,7 +36,6 @@ class AccountsController extends  BaseController{
             if($isLoggedIn){
                 $_SESSION['username'] = $username;
                 $this->addInfoMessage("Successfully login.");
-                // return $this->redirect("books");
                 return $this->redirect("home");
             } else {
                 $this->addErrorMessage("Login error.");
