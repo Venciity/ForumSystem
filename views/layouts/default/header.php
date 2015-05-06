@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Forum</a>
+            <a class="navbar-brand" href="/">Forum</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -41,6 +41,6 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container center-block">
 
 <?php include('messages.php'); ?>

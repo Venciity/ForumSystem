@@ -11,17 +11,17 @@ class AccountsController extends  BaseController{
         if($this->isPost){
             $username = $_POST['username'];
             if($username == null || strlen($username) < 3){
-               return $this->addErrorMessage("Username is invalid.");
-                //$this->redirect("account", "register");
+               $this->addErrorMessage("Username is invalid.");
+                return $this->redirect("accounts", "register");
             }
             $password = $_POST['password'];
             $isRegistered = $this->db->register($username, $password);
             if($isRegistered){
                 $_SESSION['username'] = $username;
                 $this->addInfoMessage("Successfully register.");
-                $this->redirect("home");
-            } else {
-                $this->addErrorMessage("Register account failed.");
+                return $this->redirect("home");
+            } else {$this->addErrorMessage("Register account failed.");
+                return $this->redirect("home");
             }
         }
 
