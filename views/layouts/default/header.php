@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/content/bootstrap-3.3.4-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/content/styles.css"/>
-    <link rel="stylesheet" href="/content/bootstrap-3.3.4-dist/js/bootstrap.min.js"/>
     <title><?php if(isset($this->title)) echo htmlspecialchars($this->title)?></title>
 </head>
 <body>
@@ -42,5 +41,4 @@
     </div>
 </nav>
 <div class="container center-block">
-
 <?php include('messages.php'); ?>
