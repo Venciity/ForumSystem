@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/questions">Questions</a></li>
-                <li><a href="#">Categories</a></li>
+                <li><a href="/categories">Categories</a></li>
 
             </ul>
             <?php if($this->isLoggedIn) : ?>
