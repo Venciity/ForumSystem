@@ -10,7 +10,9 @@
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <?= htmlspecialchars($info['user']) ?>
             </span>
-            <a href="/questions/delete/<?= $info['id'] ?>" class="btn btn-danger btn-xs pull-right">Delete</a>
+            <?php if($_SESSION['username'] == $info['user']) : ?>
+                <a href="/questions/delete/<?= $info['id'] ?>" class="btn btn-danger btn-xs pull-right">Delete</a>
+            <?php endif; ?>
         </div>
     </div>
 <?php endforeach; ?>
