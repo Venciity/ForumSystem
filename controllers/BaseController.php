@@ -91,19 +91,19 @@ abstract class BaseController {
         return $this->formValues[$field];
     }
 
-    function addMessage($message, $type){
+    function addMessage($message, $class){
         if(!isset($_SESSION['messages'])){
             $_SESSION['messages'] = array();
         }
 
-        array_push($_SESSION['messages'], array('text' => $message, 'type' => $type));
+        array_push($_SESSION['messages'], array('text' => $message, 'class' => $class));
     }
 
     function addInfoMessage($message){
-        $this->addMessage($message, 'info');
+        $this->addMessage($message, 'alert alert-dismissible alert-success');
     }
 
     function addErrorMessage($message){
-        $this->addMessage($message, 'error');
+        $this->addMessage($message, 'alert alert-dismissible alert-danger');
     }
 }

@@ -1,27 +1,18 @@
 <h1><?= htmlspecialchars($this->title)?></h1>
-<div class="panel panel-default">
-    <div class="panel-heading">All questions</div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>User</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($this->questions as $question) : ?>
-            <tr>
-                <td><?= $question['id'] ?></td>
-                <td><?= htmlspecialchars($question['text']) ?></td>
-                <td><?= htmlspecialchars($question['category']) ?></td>
-                <td><?= htmlspecialchars($question['user']) ?></td>
-                <td><a href="/questions/delete/<?= $question['id'] ?>">[Delete]</a></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-<a href="/questions/create" class="btn btn-primary">Create</a>
+<a href="/questions/create" class="btn btn-primary create">Create</a>
+<?php foreach ($this->questions as $question) : ?>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= htmlspecialchars($question['text']) ?></h3>
+        </div>
+        <div class="panel-body"><?= htmlspecialchars($question['content']) ?></div>
+        <div class="panel-footer">
+            <span class="label label-primary">Category: <?= htmlspecialchars($question['category']) ?></span>
+            <span class="label label-primary">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <?= htmlspecialchars($question['user']) ?>
+            </span>
+            <a href="/questions/delete/<?= $question['id'] ?>" class="btn btn-danger btn-xs pull-right">Delete</a>
+        </div>
+    </div>
+<?php endforeach; ?>
