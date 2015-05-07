@@ -20,8 +20,6 @@ class QuestionsController extends BaseController {
         if($this->isPost){
             $text = $_POST['question_text'];
             $content = $_POST['question_content'];
-            var_dump($content);
-            var_dump($text);
             $categoryText = $_POST['question_category'];
             $categoryId = $this->db->getCategoryIdByText($categoryText);
             $userId = $this->db->getCurrentUserId();
@@ -34,7 +32,6 @@ class QuestionsController extends BaseController {
                 $this->addInfoMessage("Question created.");
                 $this->redirect('questions');
             } else{
-                echo "V ESLA";
                 $this->addErrorMessage("Error creating question.");
             }
         }
