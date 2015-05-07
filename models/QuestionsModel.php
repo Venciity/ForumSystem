@@ -10,11 +10,22 @@ class QuestionsModel extends BaseModel{
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getQuestionInfo($id){
+        $statement = self::$db->query(
+            "SELECT q.id, q.text, q.content, c.text as category, u.username as user
+             FROM questions as q
+               JOIN categories as c ON q.category_id = c.id
+               JOIN users as u ON q.user_id = u.id WHERE q.id = $id ORDER BY q.id");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // TODO: move this later ------------------------
     public function getAllCategories(){
         $statement = self::$db->query("SELECT text FROM categories order by id;");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
+    // TODO: move this later ------------------------
     public function getCategoryIdByText($text){
         $statement = self::$db->prepare("SELECT id FROM categories where text = ?");
         $statement->bind_param("s", $text);
@@ -23,6 +34,7 @@ class QuestionsModel extends BaseModel{
         return $result['id'];
     }
 
+    // TODO: move this later ------------------------
     public function getCurrentUserId(){
         $username = $_SESSION['username'];
         $statement = self::$db->prepare("SELECT id FROM users where username = ?");

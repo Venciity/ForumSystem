@@ -39,6 +39,12 @@ class QuestionsController extends BaseController {
         $this->renderView(__FUNCTION__);
     }
 
+    public function viewQuestionInfo($id){
+        $this->questionInfo = $this->db->getQuestionInfo($id);
+        $this->authorize();
+        $this->renderView(__FUNCTION__);
+    }
+
     public function delete($id){
         // TODO: Add "The current user can delete only his questions"
         $this->authorize();
