@@ -32,14 +32,15 @@ class QuestionsModel extends BaseModel{
         return $result['id'];
     }
 
-    public function createQuestion($text, $userId, $categoryId) {
+    public function createQuestion($text, $content, $userId, $categoryId) {
         if ($text == '') {
             return false;
         }
 
-        $statement = self::$db->prepare("INSERT INTO questions VALUES(NULL, ?, ?, ?)");
-        $statement->bind_param("sii", $text, $userId, $categoryId);
+        $statement = self::$db->prepare("INSERT INTO questions(id, text, content, user_id, category_id) VALUES(NULL, ?, ?, ?, ?)");
+        $statement->bind_param("ssii", $text, $content, $userId, $categoryId);
         $statement->execute();
+        var_dump($statement->affected_rows);
         return $statement->affected_rows > 0;
     }
 

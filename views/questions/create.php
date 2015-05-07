@@ -1,12 +1,3 @@
-<!--<h1>Create New Author</h1>-->
-<!--<form action="/authors/create" method="post">-->
-<!--    <label for="author_name">Name: </label>-->
-<!--    <input type="text" name="author_name" id="author_name" value="--><?php //echo $this->getFieldValue('author_name') ?><!--"/>-->
-<!--    <input type="submit" value="Create"/>-->
-<!--    --><?php //echo $this->getValidationError('author_name') ?>
-<!--</form>-->
-
-
 <div class="col-lg-5">
     <form action="/questions/create" method="post" class="form-horizontal">
         <fieldset>
@@ -14,7 +5,13 @@
             <div class="form-group">
                 <label for="question_text" class="col-lg-2 control-label">Text:</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="question_text" name="question_text"></textarea>
+                    <textarea class="form-control" rows="2" id="question_text" name="question_text"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="question_content" class="col-lg-2 control-label">Content:</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="3" id="question_content" name="question_content"></textarea>
                 </div>
             </div>
             <div class="form-group">

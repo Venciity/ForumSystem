@@ -19,6 +19,9 @@ class QuestionsController extends BaseController {
         $this->authorize();
         if($this->isPost){
             $text = $_POST['question_text'];
+            $content = $_POST['question_content'];
+            var_dump($content);
+            var_dump($text);
             $categoryText = $_POST['question_category'];
             $categoryId = $this->db->getCategoryIdByText($categoryText);
             $userId = $this->db->getCurrentUserId();
@@ -27,10 +30,11 @@ class QuestionsController extends BaseController {
                 $this->addValidationError('question_text', 'The question text symbols should be greater than 5');
                 return $this->renderView(__FUNCTION__);
             }
-            if($this->db->createQuestion($text, $userId, $categoryId)){
+            if($this->db->createQuestion($text, $content, $userId, $categoryId)){
                 $this->addInfoMessage("Question created.");
                 $this->redirect('questions');
             } else{
+                echo "V ESLA";
                 $this->addErrorMessage("Error creating question.");
             }
         }
