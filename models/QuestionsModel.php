@@ -44,6 +44,17 @@ class QuestionsModel extends BaseModel{
         return $result['id'];
     }
 
+    // TODO: move this later ------------------------
+    public function getAllComments($id){
+        $statement = self::$db->query(
+            "SELECT c.id, c.text, u.username as user
+             FROM questions as q
+               JOIN comments as c on q.id = c.question_id
+               JOIN users as u on u.id = c.user_id
+               where q.id = $id");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function createQuestion($text, $content, $userId, $categoryId) {
         if ($text == '') {
             return false;

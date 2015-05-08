@@ -41,6 +41,7 @@ class QuestionsController extends BaseController {
 
     public function viewQuestionInfo($id){
         $this->questionInfo = $this->db->getQuestionInfo($id);
+        $this->comments = $this->db->getAllComments($id);
         $this->authorize();
         $this->renderView(__FUNCTION__);
     }

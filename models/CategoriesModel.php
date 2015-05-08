@@ -5,4 +5,8 @@ class CategoriesModel extends BaseModel{
         $statement = self::$db->query("SELECT text FROM categories order by id;");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getQuestionsInfoByCategory($text){
+
+    }
 }
