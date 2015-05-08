@@ -36,7 +36,7 @@ body>footer {
 }
 
 .create, .answer {
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .btn-xs {
