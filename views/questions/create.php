@@ -17,10 +17,7 @@
             <div class="form-group">
                 <label for="question_category" class="col-lg-2 control-label">Category:</label>
                 <div class="col-lg-10">
-                    <select class="form-control" id="question_category" name="question_category">
-                        <?php foreach ($this->categories as $category) : ?>
-                        <option><?= htmlspecialchars($category['text']) ?></option>
-                        <?php endforeach; ?>
+                    <select class="form-control categories" id="question_category" name="question_category">
                     </select>
                 </div>
             </div>
@@ -31,3 +28,15 @@
             </div>
         </fieldset>
 </div>
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $.ajax({
+            url: '/categories/getCategories',
+            method: 'GET'
+        }).success(function (data) {
+            $('.categories').html(data);
+        })
+    });
+</script>

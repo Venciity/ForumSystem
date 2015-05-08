@@ -47,12 +47,6 @@ class QuestionsModel extends BaseModel{
     }
 
     // TODO: move this later ------------------------
-    public function getAllCategories(){
-        $statement = self::$db->query("SELECT text FROM categories order by id;");
-        return $statement->fetch_all(MYSQLI_ASSOC);
-    }
-
-    // TODO: move this later ------------------------
     public function getCategoryIdByText($text){
         $statement = self::$db->prepare("SELECT id FROM categories where text = ?");
         $statement->bind_param("s", $text);

@@ -14,4 +14,9 @@ class CategoriesController extends BaseController{
         $this->renderView();
     }
 
+    public function getCategories(){
+        $this->categories = $this->db->getAll();
+        $this->renderView(__FUNCTION__, false);
+    }
+
 }

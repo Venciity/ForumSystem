@@ -18,7 +18,6 @@ class QuestionsController extends BaseController {
     }
 
     public function create(){
-        $this->categories = $this->db->getAllCategories();
         $this->authorize();
         if($this->isPost){
             $text = $_POST['question_text'];
