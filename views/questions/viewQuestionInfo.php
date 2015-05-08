@@ -5,6 +5,9 @@
         </div>
         <div class="panel-body"><?= htmlspecialchars($info['content']) ?></div>
         <div class="panel-footer">
+            <button class="btn btn-primary btn-xs" type="button">
+                Visits: <span class="badge"><?= $info['visits_count'] ?></span>
+            </button>
             <span class="label label-primary">Category: <?= htmlspecialchars($info['category']) ?></span>
             <span class="label label-primary">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>

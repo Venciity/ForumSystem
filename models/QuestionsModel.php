@@ -3,7 +3,7 @@
 class QuestionsModel extends BaseModel{
     public function getAll(){
         $statement = self::$db->query(
-            "SELECT q.id, q.text, q.content, c.text as category, u.username as user
+            "SELECT q.id, q.text, q.content, q.visits_count, c.text as category, u.username as user
              FROM questions as q
                JOIN categories as c ON q.category_id = c.id
                JOIN users as u ON q.user_id = u.id ORDER BY id");
@@ -11,8 +11,12 @@ class QuestionsModel extends BaseModel{
     }
 
     public function getQuestionInfo($id){
+        $statement = self::$db->prepare("UPDATE questions SET visits_count = visits_count + 1 WHERE id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+
         $statement = self::$db->query(
-            "SELECT q.id, q.text, q.content, c.text as category, u.username as user
+            "SELECT q.id, q.text, q.content, q.visits_count, c.text as category, u.username as user
              FROM questions as q
                JOIN categories as c ON q.category_id = c.id
                JOIN users as u ON q.user_id = u.id WHERE q.id = $id ORDER BY q.id");
