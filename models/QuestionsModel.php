@@ -6,10 +6,21 @@ class QuestionsModel extends BaseModel{
     public function getAll(){
         $statement = self::$db->query(
             "SELECT q.id, q.text, q.content, q.visits_count, c.text as category, u.username as user
-             FROM questions as q
+             FROM questions as q LIMIT ?, ?
                JOIN categories as c ON q.category_id = c.id
                JOIN users as u ON q.user_id = u.id ORDER BY id");
         return $statement->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getFilteredQuestions($from, $size){
+        $statement = self::$db->prepare("SELECT q.id, q.text, q.content, q.visits_count, c.text as category, u.username as user
+             FROM questions as q
+               JOIN categories as c ON q.category_id = c.id
+               JOIN users as u ON q.user_id = u.id ORDER BY id LIMIT ?, ?");
+        $statement->bind_param("ii", $from, $size);
+        $statement->execute();
+        $result = $statement->get_result()->fetch_all();
+        return $result;
     }
 
     public function getQuestionInfo($id){

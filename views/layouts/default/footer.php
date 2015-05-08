@@ -1,4 +1,3 @@
-<a class="back-to-top pull-right" href="#top">Back to top</a>
 </div>
 <footer>
     <span>&copy; MVC Framework, 2015</span>
