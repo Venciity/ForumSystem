@@ -1,4 +1,4 @@
-<a href="/questions" class="btn btn-primary answer">Back to questions</a>
+<a href="/questions" class="btn btn-primary answer"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>&nbsp;Back to questions</a>
 <?php foreach ($this->questionInfo as $info) : ?>
     <div class="panel panel-primary">
         <div class="panel-heading">

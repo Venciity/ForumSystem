@@ -9,7 +9,6 @@ class CommentsController  extends BaseController{
     }
 
     public function commentQuestion($id){
-        echo "$id";
         $_SESSION['commentId'] = $id;
         $this->authorize();
         if($this->isPost){

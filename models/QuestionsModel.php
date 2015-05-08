@@ -8,7 +8,7 @@ class QuestionsModel extends BaseModel{
             "SELECT q.id, q.text, q.content, q.visits_count, c.text as category, u.username as user
              FROM questions as q LIMIT ?, ?
                JOIN categories as c ON q.category_id = c.id
-               JOIN users as u ON q.user_id = u.id ORDER BY id");
+               JOIN users as u ON q.user_id = u.id ORDER DESC BY id");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -16,7 +16,7 @@ class QuestionsModel extends BaseModel{
         $statement = self::$db->prepare("SELECT q.id, q.text, q.content, q.visits_count, c.text as category, u.username as user
              FROM questions as q
                JOIN categories as c ON q.category_id = c.id
-               JOIN users as u ON q.user_id = u.id ORDER BY id LIMIT ?, ?");
+               JOIN users as u ON q.user_id = u.id ORDER BY id DESC LIMIT ?, ?");
         $statement->bind_param("ii", $from, $size);
         $statement->execute();
         $result = $statement->get_result()->fetch_all();
