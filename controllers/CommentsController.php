@@ -31,4 +31,14 @@ class CommentsController  extends BaseController{
 
         $this->renderView(__FUNCTION__);
     }
+
+    public function delete($id){
+        $this->authorize();
+        if($this->db->deleteComment($id)){
+            $this->addInfoMessage("Comment deleted.");
+        } else {
+            $this->addErrorMessage("Error deleting comment.");
+        }
+        $this->redirect('questions');
+    }
 }

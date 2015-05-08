@@ -100,4 +100,11 @@ class QuestionsModel extends BaseModel{
         $statement->execute();
         return $statement->affected_rows > 0;
     }
+
+//    public function deleteComment($id) {
+//        $statement = self::$db->prepare("DELETE FROM comments WHERE id = ?");
+//        $statement->bind_param("i", $id);
+//        $statement->execute();
+//        return $statement->affected_rows > 0;
+//    }
 }

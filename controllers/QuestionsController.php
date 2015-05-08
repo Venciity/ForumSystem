@@ -8,15 +8,6 @@ class QuestionsController extends BaseController {
         $this->db = new QuestionsModel();
     }
 
-//    public function index($page = 0, $pageSize = 10){
-//        $this->authorize();
-//        $from = $page * $pageSize;
-//        $this->page = $page;
-//        $this->pageSize = $pageSize;
-//        $this->questions = $this->db->getAll();
-//        $this->renderView();
-//    }
-
     public function index($page = 0, $pageSize = 10){
         $this->authorize();
         $from = $page * $pageSize;
@@ -60,7 +51,6 @@ class QuestionsController extends BaseController {
     }
 
     public function delete($id){
-        // TODO: Add "The current user can delete only his questions"
         $this->authorize();
         if($this->db->deleteQuestion($id)){
             $this->addInfoMessage("Question deleted.");

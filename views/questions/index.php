@@ -19,7 +19,7 @@
                 <?= htmlspecialchars($question[5]) ?>
             </span>
             <?php if($_SESSION['username'] == $question[5]) : ?>
-                <a href="/questions/delete/<?= $question['id'] ?>" class="btn btn-danger btn-xs pull-right">Delete</a>
+                <a href="/questions/delete/<?= $question[0] ?>" class="btn btn-danger btn-xs pull-right">Delete</a>
             <?php endif; ?>
         </div>
     </div>
