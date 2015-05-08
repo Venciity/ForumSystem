@@ -1,5 +1,7 @@
 <?php
 
+include_once("CategoriesModel.php");
+
 class QuestionsModel extends BaseModel{
     public function getAll(){
         $statement = self::$db->query(
@@ -20,6 +22,16 @@ class QuestionsModel extends BaseModel{
              FROM questions as q
                JOIN categories as c ON q.category_id = c.id
                JOIN users as u ON q.user_id = u.id WHERE q.id = $id ORDER BY q.id");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getQuestionTagsByQuestionId($id){
+        $statement = self::$db->query("SELECT t.text
+             FROM questions as q
+               JOIN categories as c ON q.category_id = c.id
+               JOIN questions_tags qt ON q.id = qt.question_id
+               JOIN tags t ON t.id = qt.tag_id
+               WHERE q.id = $id");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 

@@ -47,3 +47,7 @@ body>footer {
     display: block;
     margin-bottom: 15px;
 }
+
+.tags {
+    margin-left: 5px;
+}
