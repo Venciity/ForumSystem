@@ -42,3 +42,8 @@ body>footer {
 .btn-xs {
     line-height: 1;
 }
+
+.back-to-top {
+    display: block;
+    margin-bottom: 15px;
+}
