@@ -71,7 +71,7 @@ class QuestionsModel extends BaseModel{
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function createQuestion($text, $content, $userId, $categoryId) {
+    public function createQuestion($text, $content, $userId, $categoryId, $tags) {
         if ($text == '') {
             return false;
         }
@@ -79,8 +79,53 @@ class QuestionsModel extends BaseModel{
         $statement = self::$db->prepare("INSERT INTO questions(id, text, content, user_id, category_id) VALUES(NULL, ?, ?, ?, ?)");
         $statement->bind_param("ssii", $text, $content, $userId, $categoryId);
         $statement->execute();
-        var_dump($statement->affected_rows);
+
+        foreach ($tags as $tag){
+            $tagId = $this->getTagIdByText($tag);
+            $statementLastQuestionId = self::$db->prepare("SELECT id FROM questions order by id desc LIMIT 1;");
+            $statementLastQuestionId->execute();
+            $result = $statementLastQuestionId->get_result()->fetch_assoc();
+            $lastQuestionId = $result['id'];
+            if($tagId != null){
+                $this->insertTagForQuestion($lastQuestionId, $tagId);
+            } else {
+                $statementInsertTag = self::$db->prepare("INSERT INTO tags(text) VALUES(?)");
+                $statementInsertTag->bind_param("s", $tag);
+                $statementInsertTag->execute();
+                //--------------------------------------------------------------------------------------------
+                $statementGetLastTagId = self::$db->prepare("SELECT id FROM tags order by id desc LIMIT 1;");
+                $statementGetLastTagId->execute();
+                $result = $statementGetLastTagId->get_result()->fetch_assoc();
+                $lastTagId = $result['id'];
+                $this->insertTagForQuestion($lastQuestionId, $lastTagId);
+            }
+
+        }
+
         return $statement->affected_rows > 0;
+    }
+
+    public function getLastQuestionId(){
+        $statementLastQuestionId = self::$db->prepare("SELECT id FROM questions order by id desc LIMIT 1;");
+        $statementLastQuestionId->execute();
+        $result = $statementLastQuestionId->get_result()->fetch_assoc();
+        return $result['id'];
+    }
+
+    public function insertTagForQuestion($question_id, $tag_id){
+        $statement = self::$db->prepare("INSERT INTO questions_tags(question_id, tag_id) VALUES(?, ?)");
+        $statement->bind_param("ii", $question_id, $tag_id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
+
+    // TODO: USE IT ************************************************************************************************************
+    public function getTagIdByText($text){
+        $statement = self::$db->prepare("SELECT id FROM forum.tags where text = ? ");
+        $statement->bind_param("s", $text);
+        $statement->execute();
+        $result = $statement->get_result()->fetch_assoc();
+        return $result['id'];
     }
 
     public function deleteQuestion($id) {
@@ -90,3 +135,4 @@ class QuestionsModel extends BaseModel{
         return $statement->affected_rows > 0;
     }
 }
+?>

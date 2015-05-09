@@ -21,6 +21,12 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="question_tags" class="col-lg-2 control-label">Tags:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="question_tags" name="question_tags">
+                </div>
+            </div>
             <div class="col-lg-10 col-lg-offset-2">
                 <button type="reset" class="btn btn-default">Cancel</button>
                 <button type="submit" class="btn btn-primary">Create</button>

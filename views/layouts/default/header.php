@@ -36,5 +36,7 @@
         </div>
     </div>
 </nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="/content/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 <div class="container center-block">
 <?php include('messages.php'); ?>

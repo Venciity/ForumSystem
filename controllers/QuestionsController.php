@@ -23,6 +23,8 @@ class QuestionsController extends BaseController {
             $text = $_POST['question_text'];
             $content = $_POST['question_content'];
             $categoryText = $_POST['question_category'];
+            $tags = $_POST['question_tags'];
+            $tags_array = explode(" ", $tags);
             $categoryId = $this->db->getCategoryIdByText($categoryText);
             $userId = $this->db->getCurrentUserId();
             if(strlen($text) <= 5){
@@ -30,9 +32,10 @@ class QuestionsController extends BaseController {
                 $this->addValidationError('question_text', 'The question text symbols should be greater than 5');
                 return $this->renderView(__FUNCTION__);
             }
-            if($this->db->createQuestion($text, $content, $userId, $categoryId)){
+            if($this->db->createQuestion($text, $content, $userId, $categoryId, $tags_array)){
                 $this->addInfoMessage("Question created.");
-                $this->redirect('questions');
+                $lastQuestionId = $this->db->getLastQuestionId();
+                $this->redirectToUrl('viewQuestionInfo/' . $lastQuestionId);
             } else{
                 $this->addErrorMessage("Error creating question.");
             }
