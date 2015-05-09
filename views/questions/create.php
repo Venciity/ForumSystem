@@ -28,9 +28,8 @@
                 </div>
             </div>
             <div class="col-lg-10 col-lg-offset-2">
-                <button type="reset" class="btn btn-default">Cancel</button>
+                <a href="/questions" class="btn btn-primary"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>&nbsp;Back to questions</a>
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="/questions" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>&nbsp;Back to questions</a>
             </div>
         </fieldset>
 </div>

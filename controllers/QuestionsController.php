@@ -28,8 +28,7 @@ class QuestionsController extends BaseController {
             $categoryId = $this->db->getCategoryIdByText($categoryText);
             $userId = $this->db->getCurrentUserId();
             if(strlen($text) <= 5){
-                $this->addFieldValue('question_text', $text);
-                $this->addValidationError('question_text', 'The question text symbols should be greater than 5');
+                $this->addErrorMessage("The question text symbols should be greater than 5");
                 return $this->renderView(__FUNCTION__);
             }
             if($this->db->createQuestion($text, $content, $userId, $categoryId, $tags_array)){

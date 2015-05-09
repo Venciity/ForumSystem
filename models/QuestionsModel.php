@@ -82,27 +82,30 @@ class QuestionsModel extends BaseModel{
 
         foreach ($tags as $tag){
             $tagId = $this->getTagIdByText($tag);
-            $statementLastQuestionId = self::$db->prepare("SELECT id FROM questions order by id desc LIMIT 1;");
-            $statementLastQuestionId->execute();
-            $result = $statementLastQuestionId->get_result()->fetch_assoc();
-            $lastQuestionId = $result['id'];
+            $lastQuestionId = $this->getLastQuestionId();
             if($tagId != null){
                 $this->insertTagForQuestion($lastQuestionId, $tagId);
             } else {
-                $statementInsertTag = self::$db->prepare("INSERT INTO tags(text) VALUES(?)");
-                $statementInsertTag->bind_param("s", $tag);
-                $statementInsertTag->execute();
-                //--------------------------------------------------------------------------------------------
-                $statementGetLastTagId = self::$db->prepare("SELECT id FROM tags order by id desc LIMIT 1;");
-                $statementGetLastTagId->execute();
-                $result = $statementGetLastTagId->get_result()->fetch_assoc();
-                $lastTagId = $result['id'];
+                $this->insertTag($tag);
+                $lastTagId = $this->getLatTagId();
                 $this->insertTagForQuestion($lastQuestionId, $lastTagId);
             }
-
         }
 
         return $statement->affected_rows > 0;
+    }
+
+    public function getLatTagId(){
+        $statementGetLastTagId = self::$db->prepare("SELECT id FROM tags order by id desc LIMIT 1;");
+        $statementGetLastTagId->execute();
+        $result = $statementGetLastTagId->get_result()->fetch_assoc();
+        return $result['id'];
+    }
+
+    public function insertTag($text){
+        $statementInsertTag = self::$db->prepare("INSERT INTO tags(text) VALUES(?)");
+        $statementInsertTag->bind_param("s", $text);
+        $statementInsertTag->execute();
     }
 
     public function getLastQuestionId(){
@@ -119,7 +122,6 @@ class QuestionsModel extends BaseModel{
         return $statement->affected_rows > 0;
     }
 
-    // TODO: USE IT ************************************************************************************************************
     public function getTagIdByText($text){
         $statement = self::$db->prepare("SELECT id FROM forum.tags where text = ? ");
         $statement->bind_param("s", $text);

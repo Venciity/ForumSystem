@@ -15,8 +15,7 @@ class CommentsController  extends BaseController{
             $content = $_POST['comment_content'];
             $userId = $this->db->getCurrentUserId();
             if(strlen($content) <= 5){
-                $this->addFieldValue('comment_content', $content);
-                $this->addValidationError('comment_content', 'The comment content symbols should be greater than 5');
+                $this->addErrorMessage("The comment content symbols should be greater than 5");
                 return $this->renderView(__FUNCTION__);
             }
             if($this->db->commentQuestion($content, $id, $userId)){
