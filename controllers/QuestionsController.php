@@ -59,6 +59,6 @@ class QuestionsController extends BaseController {
         } else {
             $this->addErrorMessage("Error deleting question.");
         }
-        $this->redirect('questions');
+        $this->redirectToUrl("questions");
     }
 }
