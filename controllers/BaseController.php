@@ -49,7 +49,8 @@ abstract class BaseController {
     }
 
     public function redirectToUrl($url){
-        header("Location: " . $url);
+        $host  = $_SERVER['HTTP_HOST'];
+        header("Location: http://$host/$url");
         die;
     }
 
@@ -62,7 +63,6 @@ abstract class BaseController {
         if($params != null){
             $encodedParams = array_map($params, 'urlencode');
             $url .= implode('/', $encodedParams);
-            //$url .= '/' . $encodedParams;
         }
 
         $this->redirectToUrl($url);

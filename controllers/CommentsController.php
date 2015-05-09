@@ -22,7 +22,7 @@ class CommentsController  extends BaseController{
             if($this->db->commentQuestion($content, $id, $userId)){
                 $this->addInfoMessage("Answer created.");
                 unset($_SESSION['commentId']);
-                $this->redirect('questions');
+                $this->redirectToUrl('questions/viewQuestionInfo/' . $id);
             } else{
                 $this->addErrorMessage("Error creating answer.");
             }
@@ -33,11 +33,12 @@ class CommentsController  extends BaseController{
 
     public function delete($id){
         $this->authorize();
+        $question_id = $this->db->getQuestionIdByCommentId($id);
         if($this->db->deleteComment($id)){
             $this->addInfoMessage("Comment deleted.");
         } else {
             $this->addErrorMessage("Error deleting comment.");
         }
-        $this->redirect('questions');
+        $this->redirectToUrl('questions/viewQuestionInfo/' . $question_id);
     }
 }

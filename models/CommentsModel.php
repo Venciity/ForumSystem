@@ -29,4 +29,12 @@ class CommentsModel extends  BaseModel{
         $statement->execute();
         return $statement->affected_rows > 0;
     }
+
+    public function getQuestionIdByCommentId($id){
+        $statement = self::$db->prepare("SELECT question_id FROM comments WHERE id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        $result = $statement->get_result()->fetch_assoc();
+        return $result['question_id'];
+    }
 }

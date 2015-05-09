@@ -35,7 +35,7 @@ class QuestionsController extends BaseController {
             if($this->db->createQuestion($text, $content, $userId, $categoryId, $tags_array)){
                 $this->addInfoMessage("Question created.");
                 $lastQuestionId = $this->db->getLastQuestionId();
-                $this->redirectToUrl('viewQuestionInfo/' . $lastQuestionId);
+                $this->redirectToUrl('questions/viewQuestionInfo/' . $lastQuestionId);
             } else{
                 $this->addErrorMessage("Error creating question.");
             }
