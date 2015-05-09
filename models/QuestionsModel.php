@@ -1,7 +1,5 @@
 <?php
 
-include_once("CategoriesModel.php");
-
 class QuestionsModel extends BaseModel{
     public function getAll(){
         $statement = self::$db->query(
@@ -46,7 +44,6 @@ class QuestionsModel extends BaseModel{
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
-    // TODO: move this later ------------------------
     public function getCategoryIdByText($text){
         $statement = self::$db->prepare("SELECT id FROM categories where text = ?");
         $statement->bind_param("s", $text);
@@ -55,7 +52,6 @@ class QuestionsModel extends BaseModel{
         return $result['id'];
     }
 
-    // TODO: move this later ------------------------
     public function getCurrentUserId(){
         $username = $_SESSION['username'];
         $statement = self::$db->prepare("SELECT id FROM users where username = ?");
@@ -65,7 +61,6 @@ class QuestionsModel extends BaseModel{
         return $result['id'];
     }
 
-    // TODO: move this later ------------------------
     public function getAllComments($id){
         $statement = self::$db->query(
             "SELECT c.id, c.text, u.username as user
