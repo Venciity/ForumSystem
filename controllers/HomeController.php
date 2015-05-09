@@ -6,7 +6,6 @@ class HomeController extends BaseController{
         if($this->isLoggedIn){
             $this->redirectToUrl("questions");
         }
-
     }
 
     public function index() {

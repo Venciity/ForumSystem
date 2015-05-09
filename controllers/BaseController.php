@@ -71,7 +71,7 @@ abstract class BaseController {
     public function authorize(){
         if(!$this->isLoggedIn){
             $this->addErrorMessage("You are not authorized. Please login first.");
-            $this->redirect("accounts", "login");
+            $this->redirectToUrl("accounts/login");
         }
     }
 
