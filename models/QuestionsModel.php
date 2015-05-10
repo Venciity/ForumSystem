@@ -72,6 +72,10 @@ class QuestionsModel extends BaseModel{
     }
 
     public function createQuestion($text, $content, $userId, $categoryId, $tags) {
+        if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+            echo "Warning: CSRF!";
+            exit;
+        }
         if ($text == '') {
             return false;
         }

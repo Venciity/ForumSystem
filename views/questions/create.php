@@ -1,7 +1,13 @@
+<?php
+    if (!isset($_POST['formToken'])) {
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
+    }
+?>
 <div class="col-lg-5">
     <form action="/questions/create" method="post" class="form-horizontal">
         <fieldset>
             <legend>Create New Question</legend>
+            <input type="hidden" name="formToken" value="<?php echo $_SESSION['formToken'] ?>"/>
             <div class="form-group">
                 <label for="question_text" class="col-lg-2 control-label">Text:</label>
                 <div class="col-lg-10">
