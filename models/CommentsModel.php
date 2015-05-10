@@ -37,4 +37,12 @@ class CommentsModel extends  BaseModel{
         $result = $statement->get_result()->fetch_assoc();
         return $result['question_id'];
     }
+
+    public function getUserIdByQuestionId($id){
+        $statement = self::$db->prepare("SELECT user_id FROM forum.questions where id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        $result = $statement->get_result()->fetch_assoc();
+        return $result['user_id'];
+    }
 }

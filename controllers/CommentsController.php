@@ -33,11 +33,18 @@ class CommentsController  extends BaseController{
     public function delete($id){
         $this->authorize();
         $question_id = $this->db->getQuestionIdByCommentId($id);
-        if($this->db->deleteComment($id)){
-            $this->addInfoMessage("Comment deleted.");
+        $currentUserId = $this->db->getCurrentUserId();
+        $userId = $this->db->getUserIdByQuestionId($question_id);
+        if($userId == $currentUserId){
+            if($this->db->deleteComment($id)){
+                $this->addInfoMessage("Comment deleted.");
+            } else {
+                $this->addErrorMessage("Error deleting comment.");
+            }
         } else {
-            $this->addErrorMessage("Error deleting comment.");
+            $this->addErrorMessage("Cannot delete comment, because you are not owner.");
         }
+
         $this->redirectToUrl('questions/viewQuestionInfo/' . $question_id);
     }
 }
