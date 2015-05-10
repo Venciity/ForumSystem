@@ -51,13 +51,24 @@ class QuestionsController extends BaseController {
         $this->renderView(__FUNCTION__);
     }
 
+    public function getUserIdByQuestionId($id){
+
+    }
+
     public function delete($id){
         $this->authorize();
-        if($this->db->deleteQuestion($id)){
-            $this->addInfoMessage("Question deleted.");
+        $userId = $this->db->getUserIdByQuestionId($id);
+        $currentUserId = $this->db->getCurrentUserId();
+        if($userId == $currentUserId){
+            if($this->db->deleteQuestion($id)){
+                $this->addInfoMessage("Question deleted.");
+            } else {
+                $this->addErrorMessage("Error deleting question.");
+            }
         } else {
-            $this->addErrorMessage("Error deleting question.");
+            $this->addErrorMessage("Cannot delete question, because you are not owner.");
         }
+
         $this->redirectToUrl("questions");
     }
 }

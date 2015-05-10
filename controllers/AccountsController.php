@@ -49,6 +49,6 @@ class AccountsController extends  BaseController{
         $this->authorize();
         unset($_SESSION['username']);
         $this->addInfoMessage("Successfully logout");
-        $this->redirectToUrl("/");
+        $this->redirectToUrl("");
     }
 }

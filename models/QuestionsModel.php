@@ -136,5 +136,13 @@ class QuestionsModel extends BaseModel{
         $statement->execute();
         return $statement->affected_rows > 0;
     }
+
+    public function getUserIdByQuestionId($id){
+        $statement = self::$db->prepare("SELECT user_id FROM forum.questions where id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        $result = $statement->get_result()->fetch_assoc();
+        return $result['user_id'];
+    }
 }
 ?>
